@@ -9,7 +9,7 @@ Android App that lists Kotlin Github repositories
 </p>
 
 <p align="center">
-<img src="/screenshots/Screen_1.png" width="200"/> <img src="/screenshots/Screen_2.png" width="200"/> <img src="/screenshots/Screen_3.png" width="200"/> <img src="/screenshots/Screen_4.gif" width="200"/>
+<img src="/screenshots/Screen_1.png" width="200"/> <img src="/screenshots/Screen_2.png" width="200"/> <img src="/screenshots/Screen_3.png" width="200"/> <img src="/screenshots/Screen_4.png" width="200"/>
 </p>
 
 ## Download
