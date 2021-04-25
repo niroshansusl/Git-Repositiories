@@ -9,11 +9,11 @@ Android App that lists Kotlin Github repositories
 </p>
 
 <p align="center">
-<img src="/screenshots/Screen_1.png" width="200"/> <img src="/screenshots/Screen_2.png" width="200"/> <img src="/screenshots/Screen_3.png" width="200"/> <img src="/screenshots/Screen_4.gif" width="200"/>
+<img src="/screenshots/Screen_1.png" width="200"/> <img src="/screenshots/Screen_2.png" width="200"/> <img src="/screenshots/Screen_3.png" width="200"/> <img src="/screenshots/Screen_4.png" width="200"/>
 </p>
 
 ## Download
-Go to the [Releases](https://github.com/yalematta/kotlin-repositories/releases) to download the lastest APK.
+Go to the [Releases](https://github.com/niroshansusl/Git-Repositiories/releases) to download the lastest APK.
 
 ## API
 By using API for Repositories (it is one of the internal GitHub API’s),
