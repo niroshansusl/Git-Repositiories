@@ -3,6 +3,7 @@ package com.niroshan.repositories.ui.details
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,12 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
 import com.bumptech.glide.Glide
+import com.google.android.gms.ads.AdError
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.FullScreenContentCallback
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.niroshan.repositories.R
 import com.niroshan.repositories.databinding.FragmentDetailsBinding
 import com.niroshan.repositories.internal.DateUtils
@@ -25,6 +32,9 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 
     private val args: DetailsFragmentArgs by navArgs()
 
+    private var mInterstitialAd: InterstitialAd? = null
+    private final var TAG = "DetailsFragment"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedElementEnterTransition =
@@ -37,6 +47,12 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         _binding = FragmentDetailsBinding.bind(view)
+
+        initInterstitialAd()
+
+        binding.adView.apply {
+            this.loadAd(AdRequest.Builder().build())
+        }
 
         binding.apply {
             name.text = args.repo.name
@@ -59,6 +75,9 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
             createDate.text = DateUtils.formatDate(args.repo.createDate)
             updateDate.text = DateUtils.formatDate(args.repo.updateDate)
             btnBrowse.setOnClickListener {
+                if (mInterstitialAd != null) {
+                    mInterstitialAd?.show(activity)
+                }
                 val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(args.repo.url))
                 startActivity(browserIntent)
             }
@@ -68,6 +87,35 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
         ViewCompat.setTransitionName(binding.avatar, "avatar_${args.repo.id}")
 
         setHasOptionsMenu(true)
+    }
+
+    private fun initInterstitialAd() {
+
+        InterstitialAd.load(activity,"ca-app-pub-3940256099942544/1033173712", AdRequest.Builder().build(), object : InterstitialAdLoadCallback() {
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                Log.d(TAG, adError?.message)
+                mInterstitialAd = null
+            }
+
+            override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                Log.d(TAG, "Ad was loaded.")
+                mInterstitialAd = interstitialAd
+            }
+        })
+
+        mInterstitialAd?.fullScreenContentCallback = object: FullScreenContentCallback() {
+            override fun onAdDismissedFullScreenContent() {
+
+            }
+
+            override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
+
+            }
+
+            override fun onAdShowedFullScreenContent() {
+                mInterstitialAd = null;
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
