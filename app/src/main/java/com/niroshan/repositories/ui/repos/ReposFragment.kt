@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.widget.AdapterView.OnItemClickListener
+import android.widget.AdapterView.VISIBLE
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -62,11 +63,12 @@ class ReposFragment : Fragment(R.layout.fragment_repos) {
         binding.adView.apply {
             var adRequest = AdRequest.Builder().build()
             this.loadAd(adRequest)
+            this.visibility = VISIBLE
         }
 
-        (activity as MainActivity).initRewardedAd()
+        //(activity as MainActivity).initRewardedAd()
 
-        //initInterstitialAd()
+        initInterstitialAd()
 
         binding.apply {
 

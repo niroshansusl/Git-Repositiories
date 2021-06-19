@@ -221,6 +221,7 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
         ads:adSize="LARGE_BANNER"
         ads:adUnitId="ca-app-pub-3940256099942544/6300978111"/>
 

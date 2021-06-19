@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
@@ -33,7 +34,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
     private val args: DetailsFragmentArgs by navArgs()
 
     private var mInterstitialAd: InterstitialAd? = null
-    private final var TAG = "DetailsFragment"
+    private var TAG = "DetailsFragment"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +53,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 
         binding.adView.apply {
             this.loadAd(AdRequest.Builder().build())
+            this.visibility = AdapterView.VISIBLE
         }
 
         binding.apply {

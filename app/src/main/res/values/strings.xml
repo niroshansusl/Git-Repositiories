@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Kotlin</string>
+    <string name="app_name">Code Knowledge</string>
     <string name="retry">Retry</string>
     <string name="results_error">Results could not be loaded</string>
     <string name="search">Search</string>
