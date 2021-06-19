@@ -22,6 +22,7 @@ import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.niroshan.repositories.R
 import com.niroshan.repositories.databinding.FragmentDetailsBinding
+import com.niroshan.repositories.internal.AppUtils
 import com.niroshan.repositories.internal.DateUtils
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -93,7 +94,8 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 
     private fun initInterstitialAd() {
 
-        InterstitialAd.load(activity,"ca-app-pub-3940256099942544/1033173712", AdRequest.Builder().build(), object : InterstitialAdLoadCallback() {
+        InterstitialAd.load(activity,
+            AppUtils.DETAIL_PAGE_PROMO_AD_UNIT_ID, AdRequest.Builder().build(), object : InterstitialAdLoadCallback() {
             override fun onAdFailedToLoad(adError: LoadAdError) {
                 Log.d(TAG, adError?.message)
                 mInterstitialAd = null

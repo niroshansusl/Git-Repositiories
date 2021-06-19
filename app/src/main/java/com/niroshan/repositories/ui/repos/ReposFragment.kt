@@ -22,6 +22,7 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.niroshan.repositories.R
 import com.niroshan.repositories.data.model.Languages
 import com.niroshan.repositories.databinding.FragmentReposBinding
+import com.niroshan.repositories.internal.AppUtils
 import com.niroshan.repositories.ui.MainActivity
 import com.niroshan.repositories.ui.repos.adapter.ReposAdapter
 import com.niroshan.repositories.ui.repos.adapter.ReposLoadStateAdapter
@@ -154,7 +155,7 @@ class ReposFragment : Fragment(R.layout.fragment_repos) {
     private fun initInterstitialAd() {
         var adRequest = AdRequest.Builder().build()
 
-        InterstitialAd.load(activity,"ca-app-pub-3940256099942544/1033173712", adRequest, object : InterstitialAdLoadCallback() {
+        InterstitialAd.load(activity,AppUtils.DETAIL_PAGE_PROMO_AD_UNIT_ID, adRequest, object : InterstitialAdLoadCallback() {
             override fun onAdFailedToLoad(adError: LoadAdError) {
                 Log.d(TAG, adError?.message)
                 mInterstitialAd = null
