@@ -61,12 +61,6 @@ class ReposFragment : Fragment(R.layout.fragment_repos) {
 
         val adapter = ReposAdapter()
 
-        binding.adView.apply {
-            var adRequest = AdRequest.Builder().build()
-            this.loadAd(adRequest)
-            this.visibility = VISIBLE
-        }
-
         //(activity as MainActivity).initRewardedAd()
 
         initInterstitialAd()
@@ -85,6 +79,12 @@ class ReposFragment : Fragment(R.layout.fragment_repos) {
                     startPostponedEnterTransition()
                     true
                 }
+            }
+
+            adView.apply {
+                var adRequest = AdRequest.Builder().build()
+                this.loadAd(adRequest)
+                this.visibility = VISIBLE
             }
 
             btnRetry.setOnClickListener {
