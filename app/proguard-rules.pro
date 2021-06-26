@@ -21,3 +21,5 @@
 #-renamesourcefileattribute SourceFile
 
 -keepnames class androidx.navigation.fragment.NavHostFragment
+-keepnames class com.niroshan.repositories.data.*
+-keepnames class * extends android.os.Parcelable

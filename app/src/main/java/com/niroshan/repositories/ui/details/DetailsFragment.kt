@@ -50,12 +50,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 
         _binding = FragmentDetailsBinding.bind(view)
 
-        initInterstitialAd()
-
-        binding.adView.apply {
-            this.loadAd(AdRequest.Builder().build())
-            this.visibility = AdapterView.VISIBLE
-        }
+        //initInterstitialAd()
 
         binding.apply {
             name.text = args.repo.name
@@ -69,6 +64,11 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                     .load(args.repo.owner.avatar_url)
                     .error(android.R.drawable.stat_notify_error)
                     .into(this)
+            }
+
+            adView.apply {
+                this.loadAd(AdRequest.Builder().build())
+                this.visibility = AdapterView.VISIBLE
             }
 
             stars.text = args.repo.stars.toString()
