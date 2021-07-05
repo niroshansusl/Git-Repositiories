@@ -22,4 +22,18 @@
 
 -keepnames class androidx.navigation.fragment.NavHostFragment
 -keepnames class com.niroshan.repositories.data.*
+-keepnames class com.niroshan.repositories.*
 -keepnames class * extends android.os.Parcelable
+
+-keep class com.niroshan.repositories.*
+
+-dontwarn androidx.databinding.**
+-keep class androidx.databinding.** { *; }
+-keep class * extends androidx.databinding.DataBinderMapper { *; }
+
+-dontwarn androidx.**
+-keep class androidx.** { *; }
+-keep interface androidx.** { *; }
+
+-keep class androidx.paging.PagedStorage.init
+

@@ -50,7 +50,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 
         _binding = FragmentDetailsBinding.bind(view)
 
-        //initInterstitialAd()
+        initInterstitialAd()
 
         binding.apply {
             name.text = args.repo.name

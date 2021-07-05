@@ -17,12 +17,13 @@ import com.bumptech.glide.Glide
 import com.niroshan.repositories.data.model.Repo
 import com.niroshan.repositories.databinding.ItemTrendingRepoBinding
 import com.niroshan.repositories.ui.repos.ReposFragmentDirections
+import javax.annotation.Nullable
 
 class ReposAdapter: PagingDataAdapter<Repo, ReposAdapter.ViewHolder>(REPO_COMPARATOR) {
 
     companion object {
         private val REPO_COMPARATOR = object : DiffUtil.ItemCallback<Repo>() {
-            override fun areItemsTheSame(oldItem: Repo, newItem: Repo) = oldItem.id == newItem.id
+            override fun areItemsTheSame(oldItem: Repo, newItem: Repo) = oldItem == newItem
 
             override fun areContentsTheSame(oldItem: Repo, newItem: Repo) = oldItem == newItem
         }
@@ -35,14 +36,15 @@ class ReposAdapter: PagingDataAdapter<Repo, ReposAdapter.ViewHolder>(REPO_COMPAR
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         getItem(position).let { repo ->
-            with(holder) {
-                itemView.tag = repo
+            with(holder as? ViewHolder) {
+                this!!.itemView.tag = repo
                 if (repo != null) {
                     bind(createOnClickListener(binding, repo), repo)
                 }
             }
         }
     }
+
 
     private fun createOnClickListener(binding : ItemTrendingRepoBinding, repo: Repo): View.OnClickListener {
         return View.OnClickListener {
@@ -52,6 +54,29 @@ class ReposAdapter: PagingDataAdapter<Repo, ReposAdapter.ViewHolder>(REPO_COMPAR
             it.findNavController().navigate(directions, extras)
         }
     }
+
+    /*class DoggoImageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
+        companion object {
+            //get instance of the DoggoImageViewHolder
+            fun getInstance(parent: ViewGroup): DoggoImageViewHolder {
+                val inflater = LayoutInflater.from(parent.context)
+                val view = inflater.inflate(R.layout.item_doggo_image_view, parent, false)
+                return DoggoImageViewHolder(view)
+            }
+        }
+
+        var ivDoggoMain: ImageView = view.findViewById(R.id.ivDoggoMain)
+
+        fun bind(item: String?) {
+            //loads image from network using coil extension function
+            ivDoggoMain.load(item) {
+                placeholder(R.drawable.doggo_placeholder)
+            }
+        }
+
+    }*/
+
 
     class ViewHolder(val binding: ItemTrendingRepoBinding) :
         RecyclerView.ViewHolder(binding.root) {

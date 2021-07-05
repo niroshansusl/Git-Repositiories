@@ -61,8 +61,6 @@ class ReposFragment : Fragment(R.layout.fragment_repos) {
 
         val adapter = ReposAdapter()
 
-        //(activity as MainActivity).initRewardedAd()
-
         initInterstitialAd()
 
         binding.apply {
